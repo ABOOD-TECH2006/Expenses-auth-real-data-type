@@ -22,7 +22,7 @@ import type { Expense } from "./redux/slices/expenses-slice";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 
 // Import main image
-// import {MainImage} from "./resources/Images/m1.png";
+import MainImage from "./resources/Images/m1.png";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -163,8 +163,8 @@ const App: React.FC = () => {
                 sx={{ height: { xs: 150, sm: 200, md: 250 }, minHeight: 150, borderRadius: 1 }}
               />
             ) : (
-              <h1>f45sf45sf</h1>
-              // <img src={MainImage} alt="Main Visual" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              // <h1>f45sf45sf</h1>
+              <img src={MainImage} alt="Main Visual" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             )}
           </Box>
 
