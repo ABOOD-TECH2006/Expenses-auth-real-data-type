@@ -29,7 +29,7 @@ const LoginTab: React.FC = () => {
   // -----------------------------
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     if (!data.email || !data.password) return;
-    
+
     const res = await auth.login(data.email, data.password);
     if (!res.status) return toast.error(res.message);
 
@@ -80,7 +80,10 @@ const LoginTab: React.FC = () => {
     const res = await auth.sendVerificationEmail(unverifiedToken);
     if (!res.status) return toast.error("Failed to resend verification email");
 
-    toast.success("Verification email resent. Check your inbox.");
+    toast.success(
+      "Verification email has been sent. If you don’t see it, please check your Spam."
+    );
+
   };
 
   return (

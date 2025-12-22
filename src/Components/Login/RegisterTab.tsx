@@ -74,7 +74,10 @@ const RegisterTab: React.FC = () => {
 
     setVerificationToken(res.token);
     setVerificationSent(true);
-    toast.success("Verification email sent. Please check your inbox.");
+    toast.success(
+  "Verification email has been sent. If you don’t see it, please check your Spam."
+);
+
     reset();
   };
 
