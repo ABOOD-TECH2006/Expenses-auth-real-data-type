@@ -5,14 +5,24 @@ import type { RootState } from "../store";
 /* ============================
    TYPES
 ============================ */
+
+/**
+ * Expense model used inside Redux state and UI.
+ * firebaseId exists ONLY on the client side.
+ */
 export interface Expense {
   firebaseId: string;
   title: string;
   date: string;
   value: number;
   description: string;
-  // add other fields if needed
 }
+
+/**
+ * Expense payload sent to Firebase.
+ * firebaseId must NOT be stored in the database.
+ */
+type ExpensePayload = Omit<Expense, "firebaseId">;
 
 interface ExpensesState {
   expenses: Expense[];
@@ -46,9 +56,13 @@ export const fetchExpenses = createAsyncThunk<
 
   if (!res.data) return [];
 
+  /**
+   * Firebase returns objects keyed by firebaseId.
+   * We explicitly attach firebaseId to each expense.
+   */
   return Object.entries(res.data).map(([firebaseId, expense]) => ({
     firebaseId,
-    ...(expense as Omit<Expense, "firebaseId">),
+    ...(expense as ExpensePayload),
   }));
 });
 
@@ -57,21 +71,30 @@ export const fetchExpenses = createAsyncThunk<
 ============================ */
 export const addExpenseFirebase = createAsyncThunk<
   Expense,
-  Expense,
+  ExpensePayload,
   { state: RootState; rejectValue: string }
->("expenses/addExpenseFirebase", async (expense, { getState, rejectWithValue }) => {
+>("expenses/addExpenseFirebase", async (expenseData, { getState, rejectWithValue }) => {
   const { userId, token } = getState().auth;
 
   if (!userId || !token) {
     return rejectWithValue("Not authenticated");
   }
 
+  /**
+   * Send payload WITHOUT firebaseId to Firebase
+   */
   const res = await axios.post(
     `${FIREBASE_BASE_URL}/${userId}/expenses.json?auth=${token}`,
-    expense
+    expenseData
   );
 
-  return { firebaseId: res.data.name, ...expense };
+  /**
+   * Attach firebaseId on the client side only
+   */
+  return {
+    firebaseId: res.data.name,
+    ...expenseData,
+  };
 });
 
 /* ============================
@@ -99,8 +122,8 @@ export const deleteExpenseFirebase = createAsyncThunk<
    UPDATE EXPENSE
 ============================ */
 export const updateExpenseFirebase = createAsyncThunk<
-  { firebaseId: string; updatedExpense: Expense },
-  { firebaseId: string; updatedExpense: Expense },
+  { firebaseId: string; updatedExpense: ExpensePayload },
+  { firebaseId: string; updatedExpense: ExpensePayload },
   { state: RootState; rejectValue: string }
 >(
   "expenses/updateExpenseFirebase",
@@ -111,6 +134,9 @@ export const updateExpenseFirebase = createAsyncThunk<
       return rejectWithValue("Not authenticated");
     }
 
+    /**
+     * Update Firebase WITHOUT firebaseId in the payload
+     */
     await axios.put(
       `${FIREBASE_BASE_URL}/${userId}/expenses/${firebaseId}.json?auth=${token}`,
       updatedExpense
