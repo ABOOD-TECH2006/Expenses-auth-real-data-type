@@ -31,25 +31,26 @@ const LoginTab: React.FC = () => {
     if (!data.email || !data.password) return;
 
     const res = await auth.login(data.email, data.password);
-    if (!res.status) return toast.error(res.message);
+    if (!res.status) return toast.error(res.message ?? "Something went wrong");
 
-    const userRes = await auth.getUserData(res.token);
+    const userRes = await auth.getUserData(res.token ?? "Something went wrong");
     if (!userRes.status) return toast.error("Failed to fetch user info");
 
     if (!userRes.user.emailVerified) {
       toast.error("Your email is not verified. Please verify your email.");
-      setUnverifiedToken(res.token);
+      // تحويل undefined إلى null لتجنب TypeScript error
+      setUnverifiedToken(res.token ?? null);
       return;
     }
 
     // Update Redux + localStorage
-    localStorage.setItem("token", res.token);
+    localStorage.setItem("token", res.token ?? "");
     localStorage.setItem("userId", userRes.user.localId);
     localStorage.setItem("emailVerified", "true");
 
     dispatch(
       authActions.login({
-        token: res.token,
+        token: res.token ?? "",
         userId: userRes.user.localId,
         emailVerified: true,
       })
@@ -65,7 +66,7 @@ const LoginTab: React.FC = () => {
   const handleForgotPassword: SubmitHandler<LoginFormInputs> = async (data) => {
     if (!data.email) return;
     const res = await auth.sendPasswordResetEmail(data.email);
-    if (!res.status) return toast.error(res.message);
+    if (!res.status) return toast.error(res.message ?? "Something went wrong");
 
     toast.success("Password reset email sent!");
     reset();
@@ -76,14 +77,21 @@ const LoginTab: React.FC = () => {
   // Resend verification email
   // -----------------------------
   const handleResendVerification = async () => {
-    if (!unverifiedToken) return;
-    const res = await auth.sendVerificationEmail(unverifiedToken);
-    if (!res.status) return toast.error("Failed to resend verification email");
+    if (!unverifiedToken) {
+      toast.error("No token available for verification.");
+      return;
+    }
 
-    toast.success(
-      "Verification email has been sent. If you don’t see it, please check your Spam."
-    );
+    try {
+      const res = await auth.sendVerificationEmail(unverifiedToken);
+      if (!res.status) throw new Error(res.message || "Failed to resend verification email");
 
+      toast.success(
+        "Verification email has been sent. If you don’t see it, please check your Spam."
+      );
+    } catch (err: any) {
+      toast.error(err.message);
+    }
   };
 
   return (
