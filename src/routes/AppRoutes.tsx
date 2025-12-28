@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 abdallah(abood) shaalan
+ * All rights reserved.
+ * This file is for viewing purposes only.
+ */
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks"; // typed Redux selector
 

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 abdallah(abood) shaalan
+ * All rights reserved.
+ * This file is for viewing purposes only.
+ */
 import { useEffect, useMemo, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import {

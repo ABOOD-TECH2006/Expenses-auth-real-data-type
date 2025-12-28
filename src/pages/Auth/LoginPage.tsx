@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 abdallah(abood) shaalan
+ * All rights reserved.
+ * This file is for viewing purposes only.
+ */
 import React, { useState } from "react";
 import { Box, Paper, Tabs, Tab, Typography, keyframes } from "@mui/material";
 import LoginTab from "../../Components/Login/LoginTab";

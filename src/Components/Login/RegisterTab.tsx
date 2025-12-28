@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 abdallah(abood) shaalan
+ * All rights reserved.
+ * This file is for viewing purposes only.
+ */
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Box, Button, TextField, Stack, Alert } from "@mui/material";

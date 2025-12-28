@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 abdallah(abood) shaalan
+ * All rights reserved.
+ * This file is for viewing purposes only.
+ */
 import React, { useEffect, useState, useRef } from "react";
 import { Box, Typography, Button, CircularProgress, SxProps, Theme } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";

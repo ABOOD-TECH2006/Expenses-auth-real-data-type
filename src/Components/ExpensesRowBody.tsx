@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 abdallah(abood) shaalan
+ * All rights reserved.
+ * This file is for viewing purposes only.
+ */
 import React from "react";
 import { TableCell, IconButton, Tooltip, Box } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";

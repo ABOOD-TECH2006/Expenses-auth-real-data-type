@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 abdallah(abood) shaalan
+ * All rights reserved.
+ * This file is for viewing purposes only.
+ */
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./slices/auth-slice";
 import expensesReducer from "./slices/expenses-slice";
