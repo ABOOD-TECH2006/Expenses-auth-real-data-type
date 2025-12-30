@@ -28,6 +28,7 @@ import { useAppDispatch, useAppSelector } from "./redux/hooks";
 
 // Import main image
 import MainImage from "./resources/Images/m1.png";
+import Footer from "./Components/Footer";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -229,6 +230,7 @@ const App: React.FC = () => {
         <Box sx={{ overflowX: "auto" }}>
           <ExpensesTable Expenses={filteredExpenses} loading={isLoading} />
         </Box>
+        <Footer/>
       </Container>
     </Box>
   );
