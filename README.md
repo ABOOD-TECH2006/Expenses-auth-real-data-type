@@ -1,7 +1,13 @@
-<div align="center">
-  <img src="./src/resources/Images/m2.svg" width="48" /> 
-  <span style="color:#2E86DE;">TrackIt</span> – Real-Time Expense Tracker
-</div>
+<p align="center">
+  <img src="./src/resources/Images/m2.svg" width="480" alt="TrackIt Logo" />
+</p>
+
+<h1 align="center">TrackIt</h1>
+
+<p align="center">
+  Real-Time Expense Tracker
+</p>
+
 
 <p align="center">
   <strong>A modern web app for secure, real-time expense tracking — built with React, Firebase, and modern frontend tools.</strong>
