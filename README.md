@@ -135,11 +135,17 @@ This project demonstrates **React expertise, Firebase integration, Redux state m
 
 ---
 
-## 📁 License
+## 🔒 License & Usage
 
-This project is licensed under the **MIT License** – see the file  
-➡️ [LICENSE](./LICENSE) in the root of this repository.
+This project is **not open source**.
 
+It is provided **for review and evaluation purposes only**, such as portfolio
+review, technical assessment, or demonstration.
+
+❌ Reuse, redistribution, modification, or commercial use is **not permitted**
+without explicit written permission from the author.
+
+See the [LICENSE](./LICENSE) file for full details.
 ---
 
 ## 🤝 Contact / Portfolio
