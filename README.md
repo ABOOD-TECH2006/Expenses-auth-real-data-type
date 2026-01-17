@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/resources/Images/m1.png" width="48" /> 
+  <img src="./src/resources/Images/m2.svg" width="48" /> 
   <span style="color:#2E86DE;">TrackIt</span> – Real-Time Expense Tracker
 </div>
 
