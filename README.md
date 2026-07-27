@@ -151,8 +151,8 @@ See the [LICENSE](./LICENSE) file for full details.
 ## 🤝 Contact / Portfolio
 
 <p align="center">
-  <a href="https://github.com/ABOOD-TECH2006" target="_blank">GitHub</a> | 
-  <a href="https://abdallah-shaalan.vercel.app" target="_blank">Portfolio</a>
+  <a href="https://github.com/abdallahshaalan" target="_blank">GitHub</a> | 
+  <a href="https://www.abdallahsh.online" target="_blank">Portfolio</a>
 </p>
 
 <p align="center">
